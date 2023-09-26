@@ -132,11 +132,11 @@ const TextAnalyser = () => {
   };
 
   const findSearchWordOccurrence = async () => {
-    setSearchResultData({
-      ...searchResultData,
-      apiStatus: apiStatusConstants.inProgress,
-    });
-    if (textFile) {
+    if (textFile && searchInput.length > 0) {
+      setSearchResultData({
+        ...searchResultData,
+        apiStatus: apiStatusConstants.inProgress,
+      });
       const formData = new FormData();
       formData.append("file", textFile);
       formData.append("searchWord", searchInput);
@@ -171,9 +171,7 @@ const TextAnalyser = () => {
 
   const submitSearch = (event) => {
     if (event.key === "Enter") {
-      if (searchInput.length > 0) {
-        findSearchWordOccurrence();
-      }
+      findSearchWordOccurrence();
     }
   };
 
@@ -183,7 +181,7 @@ const TextAnalyser = () => {
         <p className="search-result-word">{searchResultData.resultData.word}</p>
         <hr className="separator" />
         <p className="search-result-occurrence">
-          {`${searchResultData.resultData.occrrences} times appears in the paragraph`}
+          {`${searchResultData.resultData.occrrences} times appears in the file`}
         </p>
       </div>
     );
@@ -240,7 +238,11 @@ const TextAnalyser = () => {
             onChange={onChangeSearch}
             onKeyDown={submitSearch}
           />
-          <button onClick={findSearchWordOccurrence} type="button">
+          <button
+            className="search-button"
+            onClick={findSearchWordOccurrence}
+            type="button"
+          >
             Search
           </button>
         </div>
@@ -248,13 +250,12 @@ const TextAnalyser = () => {
         <div className="text-analyser-container">
           <div className="section-container">
             <h1 className="section-heading">Top 5 mostly occurred words</h1>
-            <hr className="separator" />
+
             <div className="column-heading-container">
               <p className="column-heading">WORD</p>
               <hr className="separator" />
               <p className="column-heading">FREQUENCY</p>
             </div>
-            <hr className="separator" />
             <ul className="word-item-list">
               {mostOccurredWords.map((eachWord, e) => (
                 <MostOccurredWords key={e} wordDetail={eachWord} />
@@ -263,13 +264,12 @@ const TextAnalyser = () => {
           </div>
           <div className="section-container">
             <h1 className="section-heading">Top 5 mostly co-occurred words</h1>
-            <hr className="separator" />
+
             <div className="column-heading-container">
               <p className="column-heading">PAIR</p>
               <hr className="separator" />
               <p className="column-heading">FREQUENCY</p>
             </div>
-            <hr className="separator" />
             <ul className="word-item-list">
               {mostCoOccurredWords.map((eachPair, e) => (
                 <MostCoOccurredWords key={e} pairDetail={eachPair} />
@@ -278,13 +278,12 @@ const TextAnalyser = () => {
           </div>
           <div className="section-container">
             <h1 className="section-heading">Frequency of each word</h1>
-            <hr className="separator" />
+
             <div className="column-heading-container">
               <p className="column-heading">WORD</p>
               <hr className="separator" />
               <p className="column-heading">FREQUENCY</p>
             </div>
-            <hr className="separator" />
             <ul className="word-item-list">
               {wordFrequency.map((eachWord, e) => (
                 <WordFrequency key={e} wordDetail={eachWord} />

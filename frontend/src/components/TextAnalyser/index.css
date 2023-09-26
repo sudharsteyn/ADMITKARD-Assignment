@@ -8,7 +8,14 @@
 .app-heading {
   font-family: Ace Sans;
   color: #fff;
+  font-size: 26px;
   text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .app-heading {
+    font-size: 38px;
+  }
 }
 
 .upload-form {
@@ -21,7 +28,7 @@
 .input-label {
   font-family: Roboto;
   color: #999;
-  font-size: 22px;
+  font-size: 20px;
   margin: 6px;
 }
 
@@ -34,7 +41,7 @@
   font-family: sans-serif;
   font-size: 18px;
   color: #fff;
-  border-radius: 6px;
+  border-radius: 4px;
   margin: 12px;
   padding: 6px 18px;
   border: none;
@@ -64,13 +71,10 @@
 .section-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background-color: #fff;
+  background-color: #e8f0fd;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   width: 100%;
-  height: 420px;
-  overflow: auto;
 }
 
 @media screen and (min-width: 768px) {
@@ -87,6 +91,7 @@
 
 .separator {
   margin: 0;
+  border: 0.5px solid #cccccc;
 }
 
 .column-heading-container {
@@ -94,14 +99,24 @@
 }
 
 .column-heading {
+  font-family: Roboto;
+  background-color: #acb4c1;
   text-align: center;
+  margin: 0;
+  height: 50px;
   width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .word-item-list {
   list-style-type: none;
   padding: 0;
+  margin: 0;
   overflow: auto;
+  border-radius: 8px;
+  height: 260px;
 }
 
 .error-msg {
@@ -126,6 +141,11 @@
   border: none;
   outline: none;
   cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.custom-upload:hover {
+  background-color: #cfcccc;
 }
 
 .selected-file-name {
@@ -135,13 +155,19 @@
   margin: 4px;
 }
 
+@media screen and (min-width: 768px) {
+  .selected-file-name {
+    font-size: 18px;
+  }
+}
+
 .search-input-container {
   display: flex;
   margin: 12px;
 }
 
 .search-input {
-  font-family: Roboto;
+  font-family: sans-serif;
   font-size: 16px;
   padding: 6px 12px;
   border-radius: 2px;
@@ -166,6 +192,7 @@
 
 .search-result-word {
   font-family: Roboto;
+  font-size: 18px;
   text-align: center;
   flex-shrink: 0;
   width: 50%;
@@ -173,6 +200,7 @@
 
 .search-result-occurrence {
   font-family: Roboto;
+  font-size: 18px;
   text-align: center;
   flex-shrink: 0;
   width: 50%;
@@ -189,4 +217,21 @@
   .main-loading-container {
     height: 450px;
   }
+}
+
+.search-button {
+  background-color: #b314e3;
+  font-family: sans-serif;
+  font-size: 18px;
+  color: #fff;
+  border-radius: 2px;
+  padding: 6px 18px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #7c0d9e;
 }
