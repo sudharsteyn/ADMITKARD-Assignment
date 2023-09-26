@@ -2,6 +2,7 @@ import { useState } from "react";
 import MostOccurredWords from "../MostOccurreedWords";
 import MostCoOccurredWords from "../MostCoOccurredWords";
 import WordFrequency from "../WordFrequency";
+import { MagnifyingGlass, ProgressBar } from "react-loader-spinner";
 
 import { FaCloudUploadAlt } from "react-icons/fa";
 
@@ -31,6 +32,16 @@ const TextAnalyser = () => {
     showError: false,
   });
 
+  const checkIsFileExist = () => {
+    if (!textFile) {
+      setAnalyzedData({
+        ...analyzedData,
+        errorMsg: "Please select a file",
+        showError: true,
+      });
+    }
+  };
+
   const changeFile = (event) => {
     setSearchInput("");
     setSearchResultData({
@@ -57,6 +68,7 @@ const TextAnalyser = () => {
           apiStatus: apiStatusConstants.initial,
         });
         setFileName("No file chosen");
+        setTextFile(null);
         event.target.value = "";
       }
     } else {
@@ -188,7 +200,15 @@ const TextAnalyser = () => {
   const searchResultLoadingView = () => {
     return (
       <div>
-        <p>Loading</p>
+        <ProgressBar
+          height="100"
+          width="100"
+          ariaLabel="progress-bar-loading"
+          wrapperStyle={{}}
+          wrapperClass="progress-bar-wrapper"
+          borderColor="#51E5FF"
+          barColor="#51E5FF"
+        />
       </div>
     );
   };
@@ -286,8 +306,8 @@ const TextAnalyser = () => {
 
   const loadingView = () => {
     return (
-      <div>
-        <p>Loading...</p>
+      <div className="main-loading-container">
+        <MagnifyingGlass height={100} width={100} />
       </div>
     );
   };
@@ -328,7 +348,7 @@ const TextAnalyser = () => {
         <label className="selected-file-name" htmlFor="fileInput">
           {fileName}
         </label>
-        <button className="upload-btn" type="submit">
+        <button className="upload-btn" type="submit" onClick={checkIsFileExist}>
           Upload
         </button>
         {analyzedData.showError && (

@@ -6,7 +6,7 @@
 }
 
 .app-heading {
-  font-family: Roboto;
+  font-family: Ace Sans;
   color: #fff;
   text-align: center;
 }
@@ -30,8 +30,8 @@
 }
 
 .upload-btn {
-  background-color: blueviolet;
-  font-family: Roboto;
+  background-color: #b314e3;
+  font-family: sans-serif;
   font-size: 18px;
   color: #fff;
   border-radius: 6px;
@@ -40,6 +40,11 @@
   border: none;
   outline: none;
   cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.upload-btn:hover {
+  background-color: #7c0d9e;
 }
 
 .text-analyser-container {
@@ -102,7 +107,8 @@
 .error-msg {
   font-family: Roboto;
   color: red;
-  font-size: 22px;
+  text-align: center;
+  font-size: 18px;
 }
 
 .custom-upload {
@@ -170,4 +176,17 @@
   text-align: center;
   flex-shrink: 0;
   width: 50%;
+}
+
+.main-loading-container {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .main-loading-container {
+    height: 450px;
+  }
 }
