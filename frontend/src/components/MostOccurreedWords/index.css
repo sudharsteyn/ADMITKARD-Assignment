@@ -1,0 +1,8 @@
+.word-item {
+  display: flex;
+}
+
+.word-info {
+  text-align: center;
+  width: 50%;
+}
